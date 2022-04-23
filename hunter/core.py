@@ -23,7 +23,7 @@ def logic(point_matrix: List[List[Point]]) -> Iterator[Tuple[Point, ...]]:
     ]  # Every point on the matrix
 
     queue: Deque[Tuple[Point, ...]] = deque(INITIAL_POINTS)
-    visited: Set[Tuple[Point, ...]] = set()
+    visited: Set[Tuple[Point, ...]] = set(INITIAL_POINTS)
     while queue:
         head = queue.popleft()
         yield head
@@ -40,7 +40,7 @@ def logic(point_matrix: List[List[Point]]) -> Iterator[Tuple[Point, ...]]:
                 0 <= new_x < MAX_ROW_LENGTH
                 and 0 <= new_y < MAX_COL_LENGTH
                 and new_head not in visited
-                and new_head not in head
+                and Point(new_x, new_y) not in head
             ):
                 visited.add(new_head)
                 queue.append(new_head)
