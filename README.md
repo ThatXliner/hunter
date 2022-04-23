@@ -17,7 +17,7 @@ $ pip install git+https://ThatXliner/hunter.git
 But we **highly recommend** you install this project using [pipx](https://pypa.github.io/pipx/)
 
 ```bash
-$ pipx install pip install git+https://ThatXliner/hunter.git
+$ pipx install git+https://ThatXliner/hunter.git
 ```
 
 
