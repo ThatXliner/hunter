@@ -5,6 +5,8 @@ from hunter import core
 
 
 def consumer(points: Tuple[core.Point, ...]) -> None:
+    if len(points) < 3:
+        return
     print(
         "\n".join(
             [

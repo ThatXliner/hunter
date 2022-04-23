@@ -9,7 +9,10 @@ class Point(NamedTuple):
     y: int
 
 
-def logic(point_matrix: List[List[Point]]) -> Iterator[Tuple[Point, ...]]:
+PointPath = Tuple[Point, ...]
+
+
+def logic(point_matrix: List[List[Point]]) -> Iterator[PointPath]:
     """Given a matrix of possible points, yield a tuple
     of points representing a new and unique path."""
     # pylint: disable=invalid-name
@@ -22,8 +25,8 @@ def logic(point_matrix: List[List[Point]]) -> Iterator[Tuple[Point, ...]]:
         (point,) for row in point_matrix for point in row
     ]  # Every point on the matrix
 
-    queue: Deque[Tuple[Point, ...]] = deque(INITIAL_POINTS)
-    visited: Set[Tuple[Point, ...]] = set(INITIAL_POINTS)
+    queue: Deque[PointPath] = deque(INITIAL_POINTS)
+    visited: Set[PointPath] = set(INITIAL_POINTS)
     while queue:
         head = queue.popleft()
         yield head
@@ -48,13 +51,16 @@ def logic(point_matrix: List[List[Point]]) -> Iterator[Tuple[Point, ...]]:
 
 @dataclass
 class Bot:
-    path_consumer: Callable[[Tuple[Point, ...]], None]
+    path_consumer: Callable[[PointPath], None]
     dimensions: Tuple[int, int] = (4, 4)  # 4x4 (4 rows and 4 columns)
 
     def run(self) -> None:
+        for path in self:
+            self.path_consumer(path)
+
+    def __iter__(self) -> Iterator[PointPath]:
         matrix = [
             [Point(x, y) for x in range(self.dimensions[0])]
             for y in range(self.dimensions[1])
         ]
-        for path in logic(matrix):
-            self.path_consumer(path)
+        return logic(matrix)
