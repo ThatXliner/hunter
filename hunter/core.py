@@ -1,7 +1,7 @@
 """This includes the logic, interface, and implementation of the bot"""
 from collections import deque
-from typing import List, Iterator, Tuple, Set, NamedTuple, Deque, Callable
 from dataclasses import dataclass
+from typing import Callable, Deque, Iterator, List, NamedTuple, Set, Tuple
 
 
 class Point(NamedTuple):
