@@ -1,7 +1,7 @@
 """This includes the logic, interface, and implementation of the bot"""
 from collections import deque
-from typing import List, Iterator, Tuple, Set, NamedTuple, Deque, Callable
 from dataclasses import dataclass
+from typing import Callable, Deque, Iterator, List, NamedTuple, Set, Tuple
 
 
 class Point(NamedTuple):
@@ -13,8 +13,8 @@ def logic(point_matrix: List[List[Point]]) -> Iterator[Tuple[Point, ...]]:
     """Given a matrix of possible points, yield a tuple
     of points representing a new and unique path."""
     # pylint: disable=invalid-name
-    DX = [0, 0, 1, -1, 1, 1, -1, -1]
-    DY = [1, -1, 0, 0, 1, -1, 1, -1]
+    DX = [0, 1, 1, 1, 0, -1, -1, -1]
+    DY = [1, 1, 0, -1, -1, -1, 0, 1]
 
     MAX_ROW_LENGTH = len(point_matrix[0])
     MAX_COL_LENGTH = len(point_matrix)
