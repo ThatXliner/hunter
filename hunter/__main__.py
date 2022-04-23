@@ -1,10 +1,13 @@
 """The main CLI entry point"""
+import json
 from typing import Tuple
+
+import msgpack
 
 from hunter import core
 
 
-def consumer(points: Tuple[core.Point, ...]) -> None:
+def tui(points: Tuple[core.Point, ...]) -> None:
     if len(points) < 3:
         return
     print(
@@ -27,11 +30,23 @@ def consumer(points: Tuple[core.Point, ...]) -> None:
 
 def main() -> None:
     """The main CLI entry point"""
-    print("\x1b[?25lPress Control-C to quit")
-    try:
-        core.Bot(consumer).run()
-    except KeyboardInterrupt:
-        print("\x1b[?25h")
+    output = []
+    for path in core.Bot():
+        if 3 <= len(path) <= 7:
+            output.append(path)
+        if len(path) > 7:
+            break
+
+    with open("generated.msgpack", "wb") as f:
+        msgpack.pack(output, f)
+    with open("generated.json", "w") as f:
+        json.dump(output, f)
+
+    # print("\x1b[?25lPress Control-C to quit")
+    # try:
+    #     for path in core.Bot(): tui(path)
+    # except KeyboardInterrupt:
+    #     print("\x1b[?25h")
 
 
 if __name__ == "__main__":

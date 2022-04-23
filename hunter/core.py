@@ -1,7 +1,7 @@
 """This includes the logic, interface, and implementation of the bot"""
 from collections import deque
 from dataclasses import dataclass
-from typing import Callable, Deque, Iterator, List, NamedTuple, Set, Tuple
+from typing import Deque, Iterator, List, NamedTuple, Set, Tuple
 
 
 class Point(NamedTuple):
@@ -51,12 +51,7 @@ def logic(point_matrix: List[List[Point]]) -> Iterator[PointPath]:
 
 @dataclass
 class Bot:
-    path_consumer: Callable[[PointPath], None]
     dimensions: Tuple[int, int] = (4, 4)  # 4x4 (4 rows and 4 columns)
-
-    def run(self) -> None:
-        for path in self:
-            self.path_consumer(path)
 
     def __iter__(self) -> Iterator[PointPath]:
         matrix = [

@@ -19,6 +19,7 @@ homepage = "https://github.com/ThatXliner/hunter"
 
 [tool.poetry.dependencies]
 python = "^3.7"
+msgpack = "^1.0.3"
 
 [tool.poetry.scripts]
 hunter = "hunter.__main__:main"
