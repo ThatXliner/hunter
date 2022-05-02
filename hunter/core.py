@@ -31,6 +31,7 @@ def logic(point_matrix: List[List[Point]]) -> Iterator[PointPath]:
         head = queue.popleft()
         yield head
         if head[::-1] not in visited:
+            assert False, "For some weird reason, this actually never happens lol"
             yield head[::-1]
             visited.add(head[::-1])
         for i in range(8):

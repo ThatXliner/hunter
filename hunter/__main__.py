@@ -1,40 +1,13 @@
 """The main CLI entry point"""
 
-from typing import Tuple
+from typing import List
 
 import msgpack
 
-from hunter import core
+from . import backends, core
 
 
-def tui() -> None:
-    print("\x1b[?25lPress Control-C to quit")
-    try:
-        for path in core.Bot():
-            if len(path) < 3:
-                continue
-            print(
-                "\n".join(
-                    [
-                        "".join(
-                            [
-                                f"\x1b[41m{path.index(core.Point(x, y))}\x1b[0m"
-                                if core.Point(x, y) in path
-                                else "X"
-                                for x in range(4)
-                            ]
-                        )
-                        for y in range(4)
-                    ]
-                )
-            )
-            input("--- Continue ---")
-    except KeyboardInterrupt:
-        print("\x1b[?25h")
-
-
-def main() -> None:
-    """The main CLI entry point"""
+def generate() -> None:
     output = []
     for path in core.Bot():
         if 4 <= len(path) <= 7:
@@ -44,6 +17,17 @@ def main() -> None:
 
     with open("generated.msgpack", "wb") as f:
         msgpack.pack(output, f)
+
+
+def load() -> List[core.PointPath]:
+    with open("generated.msgpack", "rb") as f:
+        output = msgpack.unpack(f)
+    return [tuple(core.Point(*point) for point in path) for path in output]
+
+
+def main() -> None:
+    """The main CLI entry point"""
+    backends.spam_print()
 
 
 if __name__ == "__main__":
