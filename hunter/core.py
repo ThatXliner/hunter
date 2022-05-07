@@ -30,10 +30,10 @@ def logic(point_matrix: List[List[Point]]) -> Iterator[PointPath]:
     while queue:
         head = queue.popleft()
         yield head
-        if head[::-1] not in visited:
-            assert False, "For some weird reason, this actually never happens lol"
-            yield head[::-1]
-            visited.add(head[::-1])
+        # For some weird reason, this actually never happens lol
+        # if head[::-1] not in visited:
+        #     yield head[::-1]
+        #     visited.add(head[::-1])
         for i in range(8):
             last_letter = head[-1]
             new_x = last_letter.x + DX[i]
