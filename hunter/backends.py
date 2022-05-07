@@ -89,6 +89,5 @@ def autogui(paths: Optional[List[core.PointPath]] = None) -> None:
                 for p in path[1:]:
                     pyautogui.moveTo(c(p))
                 pyautogui.mouseUp()
-            assert progress.finished
     except (KeyboardInterrupt, pyautogui.FailSafeException):
         print(f"Took {time.time()-past} seconds")
