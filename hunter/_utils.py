@@ -1,5 +1,5 @@
-from typing import TypeVar, Callable, Iterator, Tuple, Set, Deque
 from collections import deque
+from typing import Callable, Deque, Iterator, Set, Tuple, TypeVar
 
 T = TypeVar("T")
 

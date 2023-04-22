@@ -2,7 +2,8 @@
 from collections import deque
 from dataclasses import dataclass
 from typing import Deque, Iterator, List, Set, Tuple
-from hunter.common import PointPath, Point
+
+from hunter.common import Point, PointPath
 
 
 def logic(point_matrix: List[List[Point]]) -> Iterator[PointPath]:

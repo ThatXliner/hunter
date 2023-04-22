@@ -2,6 +2,7 @@
 from typing import List
 
 import msgpack
+
 from hunter.brute import core
 
 
