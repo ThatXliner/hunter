@@ -22,6 +22,8 @@ python = "^3.7"
 msgpack = "^1.0.3"
 PyAutoGUI = "^0.9.53"
 rich = "^12.2.0"
+pygtrie = "^2.4.2"
+pytesseract = "^0.3.9"
 
 [tool.poetry.scripts]
 hunter = "hunter.__main__:main"

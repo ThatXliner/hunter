@@ -6,6 +6,10 @@
 > Totally not cheating
 
 
+We've got so far
+
+ - Brute force method (very inefficient)
+
 ## Installation
 
 You can get this project via `pip`

@@ -4,8 +4,9 @@ from typing import List, Optional
 import pyautogui
 from rich.progress import Progress
 
-from hunter import core
+from hunter.brute import core
 
+__all__ = ["spam_print", "tui", "autogui"]
 LOWER_BOUND = 3
 UPPER_BOUND = 7
 

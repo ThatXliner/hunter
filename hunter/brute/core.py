@@ -1,15 +1,8 @@
 """This includes the logic, interface, and implementation of the bot"""
 from collections import deque
 from dataclasses import dataclass
-from typing import Deque, Iterator, List, NamedTuple, Set, Tuple
-
-
-class Point(NamedTuple):
-    x: int
-    y: int
-
-
-PointPath = Tuple[Point, ...]
+from typing import Deque, Iterator, List, Set, Tuple
+from hunter.common import PointPath, Point
 
 
 def logic(point_matrix: List[List[Point]]) -> Iterator[PointPath]:
