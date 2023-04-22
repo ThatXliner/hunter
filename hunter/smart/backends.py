@@ -1,9 +1,9 @@
-from typing import Iterator, List, Deque, Set, Tuple, NamedTuple
-from collections import deque
-import pygtrie
-import pyautogui
 import time
+from collections import deque
+from typing import Deque, Iterator, List, NamedTuple, Set, Tuple
 
+import pyautogui
+import pygtrie
 
 # import pytesseract
 
@@ -63,9 +63,7 @@ def logic(point_matrix: List[List[str]], trie: Trie) -> Iterator[PointPath]:
             new_y = last_letter.y + DY[i]
 
             if 0 <= new_x < max_row_length and 0 <= new_y < max_col_length:
-                new_point = LetterPoint(
-                    new_x, new_y, point_matrix[new_y][new_x]
-                )
+                new_point = LetterPoint(new_x, new_y, point_matrix[new_y][new_x])
                 new_head = head + (new_point,)
                 newv: str = "".join(point.value for point in new_head)
                 if (
